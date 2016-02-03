@@ -2,6 +2,7 @@
 #include <iostream>
 
 bool moveRight = true;
+sf::Time elapsed;
 
 void moveShape(sf::Shape &s, sf::RenderWindow &window, float speed)
 {
@@ -16,13 +17,12 @@ void moveShape(sf::Shape &s, sf::RenderWindow &window, float speed)
 	}
 	if (moveRight)
 	{
-		s.move(1.0f*speed, 0.0f);
+		s.move(1.0f*speed*elapsed.asMilliseconds() , 0.0f);
 	}
 	else
 	{
-		s.move(-1.0f*speed, 0.0f);
+		s.move(-1.0f*speed*elapsed.asMilliseconds(), 0.0f);
 	}
-
 }
 
 void movePlayer(sf::Shape &player) {
@@ -44,6 +44,9 @@ void movePlayer(sf::Shape &player) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
 		movement.y += 1.f;
 	}
+
+	movement.x *= elapsed.asMilliseconds();
+	movement.y *= elapsed.asMilliseconds();
 
 	player.move(movement);
 }
@@ -72,6 +75,9 @@ int main()
 	player.setOutlineColor(sf::Color::Blue);
 	player.setOutlineThickness(5.f);
 
+	// Time
+	sf::Clock clock;
+
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -80,6 +86,7 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
+		elapsed = clock.restart();
 
 		moveShape(shape1, window, 1.f);
 		moveShape(shape2, window, 0.5f);
