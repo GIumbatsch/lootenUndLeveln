@@ -4,6 +4,7 @@
 using namespace std;
 
 int main() {
+	// sfml pls
 	cout << "test" << endl;
 	getchar();
 }
