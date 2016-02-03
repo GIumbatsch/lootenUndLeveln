@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-	// sfml pls
+	// sfml pls :3
 	cout << "test" << endl;
 	getchar();
 }
