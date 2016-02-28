@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Game.h"
 
 //Start Methode. Sollte nur einmal im gesamten Programm aufgerufen werden.
