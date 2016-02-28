@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "VisibleGameObject.h"
 
-VisibleGameObject::VisibleGameObject()
+//Initialisierungsliste benutzen soll wohl besser sein als Zuweisung im Konstruktor
+VisibleGameObject::VisibleGameObject():_isLoaded(false)
 {
-	_isLoaded == false;
 }
 
 VisibleGameObject::~VisibleGameObject()

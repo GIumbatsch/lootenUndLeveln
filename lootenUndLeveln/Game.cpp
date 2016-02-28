@@ -10,6 +10,12 @@ void Game::Start()
 
 	//Spiel in 800x600 Auflösung und 32 bit Farbmodus starten, Titel: Looten und Leveln
 	_mainWindow.create(sf::VideoMode(800, 600, 32), "Looten und Leveln!");
+
+	//Spieler laden
+	_player.load("images/PlayerPrototype.png");
+	_player.setPosition(370, 300);
+
+	//Spielzustand auf "Splashscreen laden" setzen
 	_gameState = Game::ShowingSplash;
 
 	//Solange das Spiel nicht beendet wird läuft der Game Loop weiter
@@ -81,12 +87,16 @@ void Game::GameLoop()
 			}
 			case Game::Playing:
 			{
-				_mainWindow.clear(sf::Color(150,250,100));
+				_mainWindow.clear(sf::Color(0,0,0));
+				_player.draw(_mainWindow);
 				_mainWindow.display();
 
 				if (currentEvent.type == sf::Event::Closed)
-				{
 					_gameState = Game::Exiting;
+
+				if (currentEvent.type == sf::Event::KeyPressed)
+				{
+					if (currentEvent.key.code == sf::Keyboard::Escape) showMenu();
 				}
 				break;
 			}
@@ -97,3 +107,4 @@ void Game::GameLoop()
 //Die beiden Membervariablen von Game hier initialisieren, da sie static sind und wir keinen Konstruktor haben
 Game::GameState Game::_gameState = Uninitialized;
 sf::RenderWindow Game::_mainWindow;
+PlayerSprite Game::_player;
