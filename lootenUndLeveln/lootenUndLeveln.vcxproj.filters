@@ -42,6 +42,9 @@
     <ClCompile Include="MainMenu.cpp">
       <Filter>Quelldateien\game</Filter>
     </ClCompile>
+    <ClCompile Include="VisibleGameObject.cpp">
+      <Filter>Quelldateien\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -54,6 +57,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="MainMenu.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="VisibleGameObject.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
