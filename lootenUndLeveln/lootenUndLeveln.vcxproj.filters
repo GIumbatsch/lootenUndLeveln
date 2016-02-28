@@ -58,10 +58,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\Desktop\SplashScreen.png">
+    <Image Include="..\..\..\..\Desktop\MainMenu.png">
       <Filter>Ressourcendateien\images</Filter>
     </Image>
-    <Image Include="..\..\..\..\Desktop\MainMenu.png">
+    <Image Include="..\..\..\..\Desktop\SplashScreen2.png">
       <Filter>Ressourcendateien\images</Filter>
     </Image>
   </ItemGroup>
