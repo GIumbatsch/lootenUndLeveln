@@ -19,6 +19,15 @@
     <Filter Include="Quelldateien\game">
       <UniqueIdentifier>{67f2af41-07b4-4db4-8a5c-c5680596478d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Ressourcendateien\sounds">
+      <UniqueIdentifier>{8ea86d98-c9e9-4d81-a65d-3a1d873dc13d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ressourcendateien\images">
+      <UniqueIdentifier>{6e0df53a-a5e8-4e0a-b208-eb19f6363f70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ressourcendateien\sprites">
+      <UniqueIdentifier>{a008cdcd-2078-49e7-b135-94779b53f810}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -33,6 +42,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="SplashScreen.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
