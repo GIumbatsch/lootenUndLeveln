@@ -48,6 +48,9 @@
     <ClCompile Include="PlayerSprite.cpp">
       <Filter>Quelldateien\player</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjectManager.cpp">
+      <Filter>Quelldateien\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -66,6 +69,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="PlayerSprite.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectManager.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
