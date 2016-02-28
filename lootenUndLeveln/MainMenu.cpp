@@ -4,32 +4,38 @@
 MainMenu::MenuResult MainMenu::show(sf::RenderWindow &window)
 {
 	sf::Texture image;
-	image.loadFromFile("images/MainMenu.png");//TODO
+	image.loadFromFile("images/MainMenu.png");
 	sf::Sprite sprite(image);
 
-	//Play MenuItem
+	//Play Menü Item spezifizieren
 	MenuItem playButton;
 	playButton.rect.top = 145;
 	playButton.rect.height = 190;
 	playButton.rect.left = 0;
 	playButton.rect.width = 500;
+	playButton.action = Play;
 
-	//Exit Menu Item
+	//Exit Menü Item spezifizieren
 	MenuItem exitButton;
 	exitButton.rect.top = 193;
-	exitButton.rect.height = 190;
+	exitButton.rect.height = 380;
 	exitButton.rect.left = 0;
 	exitButton.rect.width = 500;
+	exitButton.action = Exit;
 
+	//In die Liste der Menü Items hinzufügen
 	_menuItems.push_back(playButton);
 	_menuItems.push_back(exitButton);
 
+	//und anzeigen
 	window.draw(sprite);
 	window.display();
 
+	//Den Button der geklickt wurde als Response des Menüs zurückgeben
 	return GetMenuResponse(window);
 }
 
+//Bei jedem Klick wird überprüft ob sich der Klick innerhalb eines der Buttons des Menüs befand
 MainMenu::MenuResult MainMenu::HandleClick(int x, int y)
 {
 	std::list<MenuItem>::iterator i;
@@ -37,10 +43,7 @@ MainMenu::MenuResult MainMenu::HandleClick(int x, int y)
 	for (i = _menuItems.begin(); i != _menuItems.end(); i++)
 	{
 		sf::Rect<int> menuItemRect = i->rect;
-		if (menuItemRect.width > y &&
-			menuItemRect.top < y &&
-			menuItemRect.left < x &&
-			menuItemRect.height > x)
+		if (menuItemRect.contains(sf::Vector2<int>(x, y)))
 		{
 			return i->action;
 		}
@@ -49,7 +52,8 @@ MainMenu::MenuResult MainMenu::HandleClick(int x, int y)
 	return Nothing;
 }
 
-MainMenu::MenuResult  MainMenu::GetMenuResponse(sf::RenderWindow& window)
+//quasi der "Menü Loop" funktionsweise analog zum Game Loop
+MainMenu::MenuResult  MainMenu::GetMenuResponse(sf::RenderWindow &window)
 {
 	sf::Event menuEvent;
 

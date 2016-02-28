@@ -20,6 +20,7 @@ void SplashScreen::show(sf::RenderWindow &renderWindow)
 
 	sf::Event event;
 
+	//Splashscreen wird verlassen sobald irgendeine Taste geklickt wurde
 	while(true)
 	{
 		while (renderWindow.pollEvent(event))

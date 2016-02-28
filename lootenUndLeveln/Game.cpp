@@ -12,20 +12,25 @@ void Game::Start()
 	_mainWindow.create(sf::VideoMode(800, 600, 32), "Looten und Leveln!");
 	_gameState = Game::ShowingSplash;
 
+	//Solange das Spiel nicht beendet wird läuft der Game Loop weiter
 	while (!isExiting()) {
 		GameLoop();
 	}
 
+	//Wenn das Spiel beendet wird schließt sich das Fenster
 	_mainWindow.close();
 }
 
+//Gibt an ob das Spiel geschlossen wird oder nicht
 bool Game::isExiting() {
+	//Spiel wird geschlossen wenn der Status auf Beenden gesetzt wird
 	if (_gameState == Game::Exiting)
 		return true;
 	else
 		return false;
 }
 
+//Funktion zum Anzeigen des Splashscreens
 void Game::showSplashScreen()
 {
 	SplashScreen splashScreen;
@@ -33,9 +38,12 @@ void Game::showSplashScreen()
 	_gameState = Game::ShowingMenu;
 }
 
+//Funktion zum Aufrufen des Menüs
 void Game::showMenu()
 {
 	MainMenu mainMenu;
+
+	//result ist der Menü Punkt der angeklickt wird
 	MainMenu::MenuResult result = mainMenu.show(_mainWindow);
 
 	switch (result)
@@ -49,6 +57,11 @@ void Game::showMenu()
 	}
 }
 
+
+/**
+Der Game Loop läuft die ganze Zeit durch und ändert die Zustände in denen sich das Spiel befindet,
+je nachdem was für eine Aktion ausgeführt wird bzw. je nachdem was für Events eintreten.
+*/
 void Game::GameLoop()
 {
 	sf::Event currentEvent;
