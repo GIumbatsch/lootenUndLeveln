@@ -36,6 +36,9 @@
     <ClCompile Include="Game.cpp">
       <Filter>Quelldateien\game</Filter>
     </ClCompile>
+    <ClCompile Include="SplashScreen.cpp">
+      <Filter>Quelldateien\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -47,5 +50,10 @@
     <ClInclude Include="SplashScreen.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\Desktop\SplashScreen.png">
+      <Filter>Ressourcendateien\images</Filter>
+    </Image>
   </ItemGroup>
 </Project>
