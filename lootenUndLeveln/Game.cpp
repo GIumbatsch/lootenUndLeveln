@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Game.h"
+#include "PlayerSprite.h"
 
 //Start Methode. Sollte nur einmal im gesamten Programm aufgerufen werden.
 void Game::Start()
@@ -12,8 +13,11 @@ void Game::Start()
 	_mainWindow.create(sf::VideoMode(800, 600, 32), "Looten und Leveln!");
 
 	//Spieler laden
-	_player.load("images/PlayerPrototype.png");
-	_player.setPosition(370, 300);
+	PlayerSprite *player = new PlayerSprite();
+	player->load("images/PlayerPrototype.png");
+	player->setPosition(370, 300);
+
+	_gameObjectManager.add("Spieler", player);
 
 	//Spielzustand auf "Splashscreen laden" setzen
 	_gameState = Game::ShowingSplash;
@@ -88,7 +92,7 @@ void Game::GameLoop()
 			case Game::Playing:
 			{
 				_mainWindow.clear(sf::Color(0,0,0));
-				_player.draw(_mainWindow);
+				_gameObjectManager.drawAll(_mainWindow);
 				_mainWindow.display();
 
 				if (currentEvent.type == sf::Event::Closed)
@@ -107,4 +111,4 @@ void Game::GameLoop()
 //Die beiden Membervariablen von Game hier initialisieren, da sie static sind und wir keinen Konstruktor haben
 Game::GameState Game::_gameState = Uninitialized;
 sf::RenderWindow Game::_mainWindow;
-PlayerSprite Game::_player;
+GameObjectManager Game::_gameObjectManager;
