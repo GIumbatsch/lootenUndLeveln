@@ -5,7 +5,11 @@ GameObjectManager::GameObjectManager()
 {
 }
 
-//Bin noch nicht so richtig dahinter gekommen wie dieser Destruktor funktioniert, hab ihn aber trotzdem erstmal übernommen
+/**
+This little bit may take a bit to wrap your head around.  std::for_each is a handy little method that takes two iterators,
+one representing where to start, the other representing where to stop and finally it takes a unary function 
+(meaning it takes a single parameter) that is to be called on each iteration.
+*/
 GameObjectManager::~GameObjectManager()
 {
 	std::for_each(_gameObjects.begin(), _gameObjects.end(), GameObjectDeallocator());
@@ -36,7 +40,7 @@ VisibleGameObject* GameObjectManager::get(std::string name) const
 }
 
 int GameObjectManager::getObjectCount() const
-{
+{	
 	return _gameObjects.size();
 }
 
