@@ -10,7 +10,7 @@ void Game::Start()
 
 	//Spiel in 800x600 Auflösung und 32 bit Farbmodus starten, Titel: Looten und Leveln
 	_mainWindow.create(sf::VideoMode(800, 600, 32), "Looten und Leveln!");
-	_gameState = Game::Playing;
+	_gameState = Game::ShowingSplash;
 
 	while (!isExiting()) {
 		GameLoop();
@@ -26,6 +26,29 @@ bool Game::isExiting() {
 		return false;
 }
 
+void Game::showSplashScreen()
+{
+	SplashScreen splashScreen;
+	splashScreen.show(_mainWindow);
+	_gameState = Game::ShowingMenu;
+}
+
+void Game::showMenu()
+{
+	MainMenu mainMenu;
+	MainMenu::MenuResult result = mainMenu.show(_mainWindow);
+
+	switch (result)
+	{
+	case MainMenu::Exit:
+		_gameState = Game::Exiting;
+		break;
+	case MainMenu::Play:
+		_gameState = Game::Playing;
+		break;
+	}
+}
+
 void Game::GameLoop()
 {
 	sf::Event currentEvent;
@@ -33,6 +56,16 @@ void Game::GameLoop()
 	{
 		switch (_gameState)
 		{
+			case Game::ShowingMenu:
+			{
+				showMenu();
+				break;
+			}
+			case Game::ShowingSplash:
+			{
+				showSplashScreen();
+				break;
+			}
 			case Game::Playing:
 			{
 				_mainWindow.clear(sf::Color(150,250,100));

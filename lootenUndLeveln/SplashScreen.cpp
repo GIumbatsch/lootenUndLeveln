@@ -5,9 +5,10 @@ void SplashScreen::show(sf::RenderWindow &renderWindow)
 {
 	//Falls das Bild nicht existiert
 	sf::Texture image;
-	if (image.loadFromFile("Ressourcendateien/images/SplashScreen.png") != true)
+	if (image.loadFromFile("images/SplashScreen.png") != true)
 	{
 		//wird es einfach nicht geladen
+		std::cout << "SplashScreen konnte nicht geladen werden." << std::endl;
 		return;
 	}
 
