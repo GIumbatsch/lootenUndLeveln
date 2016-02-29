@@ -26,6 +26,7 @@ float PlayerSprite::getVelocity() const
 
 void PlayerSprite::update(float elapsedTime)
 {
+	
 	//std::cout << "PlayerSprite- Time: " << elapsedTime << std::endl;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
@@ -57,14 +58,16 @@ void PlayerSprite::update(float elapsedTime)
 	if (_velocity < -_maxVelocity)
 		_velocity = -_maxVelocity;
 
+	/*
 	sf::Vector2f pos = this->getPosition();
 
-	/*
 	if (pos.x  < getSprite().getLocalBounds().width
-		|| pos.x >(Game::SCREEN_WIDTH - getSprite().getLocalBounds().width ))
+	|| pos.x >(Game::SCREEN_WIDTH - getSprite().getLocalBounds().width))
 	{
-		_velocity = 0; // Bounce by current velocity in opposite direction
-	} */
+	_velocity = 0.0f; // Bounce by current velocity in opposite direction
+	}
+	*/
+
 	//std::cout << elapsedTime << std::endl;
 	getSprite().move(_velocity * elapsedTime, 0.0f);
 }
