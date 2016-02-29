@@ -8,7 +8,7 @@ GameObjectManager::GameObjectManager()
 
 /**
 This little bit may take a bit to wrap your head around.  std::for_each is a handy little method that takes two iterators,
-one representing where to start, the other representing where to stop and finally it takes a unary function 
+one representing where to start, the other representing where to stop and finally it takes a unary function
 (meaning it takes a single parameter) that is to be called on each iteration.
 */
 GameObjectManager::~GameObjectManager()
@@ -17,7 +17,7 @@ GameObjectManager::~GameObjectManager()
 }
 
 void GameObjectManager::add(std::string name, VisibleGameObject *gameObject) {
-	_gameObjects.insert(std::pair<std::string, VisibleGameObject*> (name, gameObject));
+	_gameObjects.insert(std::pair<std::string, VisibleGameObject*>(name, gameObject));
 }
 
 void GameObjectManager::remove(std::string name)
@@ -36,12 +36,12 @@ VisibleGameObject* GameObjectManager::get(std::string name) const
 
 	if (result == _gameObjects.end())
 		return NULL;
-	
+
 	return result->second;
 }
 
 int GameObjectManager::getObjectCount() const
-{	
+{
 	return _gameObjects.size();
 }
 
@@ -56,13 +56,18 @@ void GameObjectManager::drawAll(sf::RenderWindow &renderWindow)
 	}
 }
 
-void GameObjectManager::updateAll()
+void GameObjectManager::updateAll(float timeDelta)
 {
 	std::map<std::string, VisibleGameObject*>::const_iterator itr = _gameObjects.begin();
-	sf::Clock clock;
-	//clock.restart();
-	float timeDelta = clock.getElapsedTime().asSeconds();
-	//sf::Time timeDelta;
+	//sf::Clock clock;
+	//sf::Time elapsed = clock.restart();
+
+	//float timeDelta = elapsed.asSeconds() * 1000;
+	//std::cout << timeDelta << std::endl;
+	//	std::cout << elapsed.asMilliseconds() << std::endl;
+	//	std::cout << elapsed.asMicroseconds() << std::endl;
+
+		//float timeDelta = clock.getElapsedTime().asMilliseconds();
 
 	while (itr != _gameObjects.end())
 	{

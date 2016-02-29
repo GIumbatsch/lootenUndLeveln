@@ -12,6 +12,10 @@ void Game::Start()
 	//Spiel in 800x600 Auflösung und 32 bit Farbmodus starten, Titel: Looten und Leveln
 	_mainWindow.create(sf::VideoMode(800, 600, 32), "Looten und Leveln!");
 
+	// FramerateLimit
+	_mainWindow.setFramerateLimit(60);
+
+
 	//Spieler laden
 	PlayerSprite *player = new PlayerSprite();
 	player->setPosition(370, 300);
@@ -22,8 +26,11 @@ void Game::Start()
 	_gameState = Game::ShowingSplash;
 
 	//Solange das Spiel nicht beendet wird läuft der Game Loop weiter
+	sf::Clock *clock = new sf::Clock();
+
+
 	while (!isExiting()) {
-		GameLoop();
+		GameLoop(*clock);
 	}
 
 	//Wenn das Spiel beendet wird schließt sich das Fenster
@@ -76,13 +83,16 @@ void Game::showMenu()
 Der Game Loop läuft die ganze Zeit durch und ändert die Zustände in denen sich das Spiel befindet,
 je nachdem was für eine Aktion ausgeführt wird bzw. je nachdem was für Events eintreten.
 */
-void Game::GameLoop()
+void Game::GameLoop(sf::Clock &clock)
 {
 	sf::Event currentEvent;
 	_mainWindow.pollEvent(currentEvent);
-	
-	switch (_gameState)
-	{
+
+	if (clock.getElapsedTime().asMilliseconds() > 10) {
+		sf::Time time = clock.restart();
+		float timeDelta = time.asMilliseconds();
+		switch (_gameState)
+		{
 		case Game::ShowingMenu:
 		{
 			showMenu();
@@ -97,7 +107,7 @@ void Game::GameLoop()
 		{
 			_mainWindow.clear(sf::Color(0, 0, 0));
 
-			_gameObjectManager.updateAll();
+			_gameObjectManager.updateAll(timeDelta);
 			_gameObjectManager.drawAll(_mainWindow);
 
 			_mainWindow.display();
@@ -112,6 +122,7 @@ void Game::GameLoop()
 				if (currentEvent.key.code == sf::Keyboard::Escape) showMenu();
 			}
 			break;
+		}
 		}
 	}
 }

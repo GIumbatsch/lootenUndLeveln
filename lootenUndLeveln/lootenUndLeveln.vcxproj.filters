@@ -53,9 +53,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -74,12 +71,18 @@
     <ClInclude Include="GameObjectManager.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\Desktop\MainMenu.png">
       <Filter>Ressourcendateien\images</Filter>
     </Image>
     <Image Include="..\..\..\..\Desktop\SplashScreen2.png">
+      <Filter>Ressourcendateien\images</Filter>
+    </Image>
+    <Image Include="C:\Users\User\Desktop\PlayerPrototype.png">
       <Filter>Ressourcendateien\images</Filter>
     </Image>
   </ItemGroup>

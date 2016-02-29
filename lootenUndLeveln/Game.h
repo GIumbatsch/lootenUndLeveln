@@ -15,7 +15,7 @@ public:
 
 private:
 	static bool isExiting();
-	static void GameLoop();
+	static void GameLoop(sf::Clock &clock);
 
 	static void showSplashScreen();
 	static void showMenu();
@@ -25,6 +25,6 @@ private:
 
 	static GameState _gameState;
 	static sf::RenderWindow _mainWindow;
-	
+
 	static GameObjectManager _gameObjectManager;
 };

@@ -2,7 +2,7 @@
 #include "PlayerSprite.h"
 #include "Game.h"
 
-PlayerSprite::PlayerSprite() : _velocity(0.0f), _maxVelocity(6000.0f)
+PlayerSprite::PlayerSprite() : _velocity(0.0f), _maxVelocity(.6f)
 {
 	load("images/PlayerPrototype.png");
 	assert(isLoaded());
@@ -26,15 +26,20 @@ float PlayerSprite::getVelocity() const
 
 void PlayerSprite::update(float elapsedTime)
 {
+	std::cout << "PlayerSprite- Time: " << elapsedTime << std::endl;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		std::cout << "Links gedrückt" << std::endl;
-		_velocity -= 30.0f;
+		//_velocity -= 30.0f;
+		_velocity = -1 * _maxVelocity;
+	
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		std::cout << "Rechts gedrückt" << std::endl;
-		_velocity += 30.0f;
+		//	_velocity += 30.0f;
+		_velocity = _maxVelocity;
+	
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
@@ -49,11 +54,12 @@ void PlayerSprite::update(float elapsedTime)
 
 	sf::Vector2f pos = this->getPosition();
 
-	if (pos.x  < getSprite().getLocalBounds().width / 2
-		|| pos.x >(Game::SCREEN_WIDTH - getSprite().getLocalBounds().width / 2))
+	/*
+	if (pos.x  < getSprite().getLocalBounds().width
+		|| pos.x >(Game::SCREEN_WIDTH - getSprite().getLocalBounds().width ))
 	{
-		_velocity = -_velocity; // Bounce by current velocity in opposite direction
-	}
-	std::cout << elapsedTime << std::endl;
+		_velocity = 0; // Bounce by current velocity in opposite direction
+	} */
+	//std::cout << elapsedTime << std::endl;
 	getSprite().move(_velocity * elapsedTime, 0.0f);
 }
