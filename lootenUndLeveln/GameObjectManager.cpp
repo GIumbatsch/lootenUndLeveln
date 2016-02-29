@@ -60,8 +60,8 @@ void GameObjectManager::updateAll()
 {
 	std::map<std::string, VisibleGameObject*>::const_iterator itr = _gameObjects.begin();
 	sf::Clock clock;
-	//clock.restart();
-	float timeDelta = clock.getElapsedTime().asSeconds();
+	float timeDelta = clock.getElapsedTime().asSeconds() * 10000.0f;
+	clock.restart();
 	//sf::Time timeDelta;
 
 	while (itr != _gameObjects.end())
