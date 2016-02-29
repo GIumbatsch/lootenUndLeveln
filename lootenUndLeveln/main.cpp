@@ -56,6 +56,7 @@ void movePlayer(sf::Shape &player) {
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1024, 720), "SFML works!");
+	window.setFramerateLimit(60);
 
 	sf::CircleShape shape1(100.f);
 	shape1.setFillColor(sf::Color::White);
