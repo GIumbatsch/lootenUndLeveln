@@ -16,4 +16,5 @@ public:
 private:
 	float _velocity;
 	float _maxVelocity;
+	float _acceleration;
 };
