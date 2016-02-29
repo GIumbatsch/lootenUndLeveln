@@ -12,8 +12,6 @@ void Game::Start()
 	//Spiel in 800x600 Auflösung und 32 bit Farbmodus starten, Titel: Looten und Leveln
 	_mainWindow.create(sf::VideoMode(800, 600, 32), "Looten und Leveln!");
 
-	_mainWindow.setFramerateLimit(60);
-
 	//Spieler laden
 	PlayerSprite *player = new PlayerSprite();
 	player->setPosition(370, 300);

@@ -2,7 +2,7 @@
 #include "PlayerSprite.h"
 #include "Game.h"
 
-PlayerSprite::PlayerSprite() : _velocity(0.0f), _maxVelocity(150.0f)
+PlayerSprite::PlayerSprite() : _velocity(0.0f), _maxVelocity(6000.0f)
 {
 	load("images/PlayerPrototype.png");
 	assert(isLoaded());
@@ -29,12 +29,12 @@ void PlayerSprite::update(float elapsedTime)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		std::cout << "Links gedrückt" << std::endl;
-		_velocity -= 3.0f;
+		_velocity -= 30.0f;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		std::cout << "Rechts gedrückt" << std::endl;
-		_velocity += 3.0f;
+		_velocity += 30.0f;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
