@@ -59,7 +59,10 @@ void GameObjectManager::drawAll(sf::RenderWindow &renderWindow)
 void GameObjectManager::updateAll()
 {
 	std::map<std::string, VisibleGameObject*>::const_iterator itr = _gameObjects.begin();
-	float timeDelta = sf::Clock::Clock().getElapsedTime().asSeconds();
+	sf::Clock clock;
+	//clock.restart();
+	float timeDelta = clock.getElapsedTime().asSeconds();
+	//sf::Time timeDelta;
 
 	while (itr != _gameObjects.end())
 	{

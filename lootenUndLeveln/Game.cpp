@@ -79,38 +79,39 @@ je nachdem was für eine Aktion ausgeführt wird bzw. je nachdem was für Events ei
 void Game::GameLoop()
 {
 	sf::Event currentEvent;
-	while (_mainWindow.pollEvent(currentEvent))
+	_mainWindow.pollEvent(currentEvent);
+	
+	switch (_gameState)
 	{
-		switch (_gameState)
+		case Game::ShowingMenu:
 		{
-			case Game::ShowingMenu:
+			showMenu();
+			break;
+		}
+		case Game::ShowingSplash:
+		{
+			showSplashScreen();
+			break;
+		}
+		case Game::Playing:
+		{
+			_mainWindow.clear(sf::Color(0, 0, 0));
+
+			_gameObjectManager.updateAll();
+			_gameObjectManager.drawAll(_mainWindow);
+
+			_mainWindow.display();
+
+			if (currentEvent.type == sf::Event::Closed)
 			{
-				showMenu();
-				break;
+				_gameState = Game::Exiting;
 			}
-			case Game::ShowingSplash:
+
+			if (currentEvent.type == sf::Event::KeyPressed)
 			{
-				showSplashScreen();
-				break;
+				if (currentEvent.key.code == sf::Keyboard::Escape) showMenu();
 			}
-			case Game::Playing:
-			{
-				_mainWindow.clear(sf::Color(0,0,0));
-
-				_gameObjectManager.updateAll();
-				_gameObjectManager.drawAll(_mainWindow);
-				_mainWindow.display();
-
-				if (currentEvent.type == sf::Event::Closed)
-					_gameState = Game::Exiting;
-
-
-				if (currentEvent.type == sf::Event::KeyPressed)
-				{
-					if (currentEvent.key.code == sf::Keyboard::Escape) showMenu();
-				}
-				break;
-			}
+			break;
 		}
 	}
 }

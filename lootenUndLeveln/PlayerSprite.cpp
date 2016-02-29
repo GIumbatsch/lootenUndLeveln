@@ -2,7 +2,7 @@
 #include "PlayerSprite.h"
 #include "Game.h"
 
-PlayerSprite::PlayerSprite() : _velocity(0), _maxVelocity(600.0f)
+PlayerSprite::PlayerSprite() : _velocity(0.0f), _maxVelocity(6000.0f)
 {
 	load("images/PlayerPrototype.png");
 	assert(isLoaded());
@@ -28,11 +28,13 @@ void PlayerSprite::update(float elapsedTime)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		_velocity -= 3.0f;
+		std::cout << "Links gedrückt" << std::endl;
+		_velocity -= 30.0f;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		_velocity += 3.0f;
+		std::cout << "Rechts gedrückt" << std::endl;
+		_velocity += 30.0f;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
@@ -52,6 +54,6 @@ void PlayerSprite::update(float elapsedTime)
 	{
 		_velocity = -_velocity; // Bounce by current velocity in opposite direction
 	}
-
-	getSprite().move(_velocity * elapsedTime, 0);
+	std::cout << elapsedTime << std::endl;
+	getSprite().move(_velocity * elapsedTime, 0.0f);
 }
