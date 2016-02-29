@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GameObjectManager.h"
+#include "Game.h"
 
 GameObjectManager::GameObjectManager()
 {
@@ -52,5 +53,17 @@ void GameObjectManager::drawAll(sf::RenderWindow &renderWindow)
 	{
 		i->second->draw(renderWindow);
 		i++;
+	}
+}
+
+void GameObjectManager::updateAll()
+{
+	std::map<std::string, VisibleGameObject*>::const_iterator itr = _gameObjects.begin();
+	float timeDelta = sf::Clock::Clock().getElapsedTime().asSeconds();
+
+	while (itr != _gameObjects.end())
+	{
+		itr->second->update(timeDelta);
+		itr++;
 	}
 }

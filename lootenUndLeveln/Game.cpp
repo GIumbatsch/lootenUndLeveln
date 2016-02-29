@@ -14,7 +14,6 @@ void Game::Start()
 
 	//Spieler laden
 	PlayerSprite *player = new PlayerSprite();
-	player->load("images/PlayerPrototype.png");
 	player->setPosition(370, 300);
 
 	_gameObjectManager.add("Spieler", player);
@@ -38,6 +37,11 @@ bool Game::isExiting() {
 		return true;
 	else
 		return false;
+}
+
+sf::RenderWindow& Game::GetWindow()
+{
+	return _mainWindow;
 }
 
 //Funktion zum Anzeigen des Splashscreens
@@ -92,11 +96,14 @@ void Game::GameLoop()
 			case Game::Playing:
 			{
 				_mainWindow.clear(sf::Color(0,0,0));
+
+				_gameObjectManager.updateAll();
 				_gameObjectManager.drawAll(_mainWindow);
 				_mainWindow.display();
 
 				if (currentEvent.type == sf::Event::Closed)
 					_gameState = Game::Exiting;
+
 
 				if (currentEvent.type == sf::Event::KeyPressed)
 				{
