@@ -156,6 +156,7 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
+    <ClCompile Include="InputController.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="PlayerSprite.cpp" />
@@ -165,6 +166,7 @@
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObjectManager.h" />
+    <ClInclude Include="InputController.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="PlayerSprite.h" />
     <ClInclude Include="SplashScreen.h" />

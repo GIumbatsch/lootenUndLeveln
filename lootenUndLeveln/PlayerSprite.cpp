@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "PlayerSprite.h"
 #include "Game.h"
+#include "InputController.h"
 
 PlayerSprite::PlayerSprite() : _velocity(0.0f), _maxVelocity(.3f), _acceleration(.0005f), _moving(false)
 {
@@ -31,31 +32,18 @@ void PlayerSprite::update(float elapsedTime)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		_moving = true;
-		_velocity = _velocity - 0.5f * _acceleration * (elapsedTime * elapsedTime);
+		InputController::moveLeft(_velocity, _acceleration, elapsedTime);
 		std::cout << _velocity << " " << _acceleration << " " << elapsedTime << std::endl;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		_moving = true;
-		_velocity = _velocity + 0.5f * _acceleration * (elapsedTime * elapsedTime);
+		InputController::moveRight(_velocity, _acceleration, elapsedTime);
 		std::cout << _velocity << " " << _acceleration << " " << elapsedTime << std::endl;
 	}
 	else
 	{
-		_moving = false;
-		while (_velocity != 0.0f)
-		{
-			if (_velocity > 0.0f) {
-				_velocity -= 0.1f * _maxVelocity;
-				std::cout << _velocity << std::endl;
-			}
-			else
-			{
-				_velocity += 0.1f * _maxVelocity;
-				std::cout << _velocity << std::endl;
-			}
-		}
-		//_velocity = 0.0f;
+		_velocity = 0.0f;
 	}
 	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))

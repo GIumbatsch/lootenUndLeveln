@@ -51,6 +51,9 @@
     <ClCompile Include="GameObjectManager.cpp">
       <Filter>Quelldateien\game</Filter>
     </ClCompile>
+    <ClCompile Include="InputController.cpp">
+      <Filter>Quelldateien\player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -72,6 +75,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="InputController.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
