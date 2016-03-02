@@ -65,7 +65,7 @@ void PlayerSprite::update(float elapsedTime)
 			std::cout << _velY << " 2. if in _jumping (vor zuweisung) " << _jumping << std::endl;
 			_velY = 0.0f;
 			_jumping = false;
-			std::cout << _velY << " 2. if in _jumping (vor zuweisung) " << _jumping << std::endl;
+			std::cout << _velY << " 2. if in _jumping (nach zuweisung) " << _jumping << std::endl;
 		}
 	}
 
