@@ -14,6 +14,7 @@ public:
 	float getVelocity() const;
 
 private:
+	bool _moving;
 	float _velocity;
 	float _maxVelocity;
 	float _acceleration;
