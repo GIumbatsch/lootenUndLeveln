@@ -3,7 +3,7 @@
 #include "Game.h"
 #include "InputController.h"
 
-PlayerSprite::PlayerSprite() : _velocity(0.0f), _maxVelocity(.3f), _acceleration(.0005f), _moving(false)
+PlayerSprite::PlayerSprite() : _velocity(0.0f), _maxVelocity(.3f), _acceleration(.0005f), _jumping(false), _velY(0.0f)
 {
 	load("images/PlayerPrototype.png");
 	assert(isLoaded());
@@ -31,13 +31,11 @@ void PlayerSprite::update(float elapsedTime)
 	//std::cout << "PlayerSprite- Time: " << elapsedTime << std::endl;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		_moving = true;
 		InputController::moveLeft(_velocity, _acceleration, elapsedTime);
 		std::cout << _velocity << " " << _acceleration << " " << elapsedTime << std::endl;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		_moving = true;
 		InputController::moveRight(_velocity, _acceleration, elapsedTime);
 		std::cout << _velocity << " " << _acceleration << " " << elapsedTime << std::endl;
 	}
@@ -46,9 +44,29 @@ void PlayerSprite::update(float elapsedTime)
 		_velocity = 0.0f;
 	}
 	
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-		_velocity = 0.0f;
+		if (!_jumping)
+		{
+			_velY = -5.0f;
+			_jumping = true;
+			std::cout << _velY << " " << _jumping << std::endl;
+		}
+	}
+
+	if (_jumping)
+	{
+		if ((int) _velY < (int) 5.0f)
+		{
+			_velY += 0.2f;
+			std::cout << _velY << " 1. if in _jumping " << _jumping << std::endl;
+		}
+		if (_velY >= 5.0f) {
+			std::cout << _velY << " 2. if in _jumping (vor zuweisung) " << _jumping << std::endl;
+			_velY = 0.0f;
+			_jumping = false;
+			std::cout << _velY << " 2. if in _jumping (vor zuweisung) " << _jumping << std::endl;
+		}
 	}
 
 	if (_velocity > _maxVelocity)
@@ -68,5 +86,5 @@ void PlayerSprite::update(float elapsedTime)
 	*/
 
 	//std::cout << elapsedTime << std::endl;
-	getSprite().move(_velocity * elapsedTime, 0.0f);
+	getSprite().move(_velocity * elapsedTime, _velY);
 }
